@@ -2,10 +2,6 @@ require './MatrixUtils.rb'
 
 module Draw
 
-  RC = $DRAW_COLOR[0]
-  GC = $DRAW_COLOR[1]
-  BC = $DRAW_COLOR[2]
-
   def self.create_board()## Create board
     board = Array.new($RESOLUTION)
     for i in (0...$RESOLUTION)
@@ -18,12 +14,12 @@ module Draw
   end
 
   # Plot a point on GRID (from top left)
-  def self.plot(x, y, r: RC, g: GC, b: BC) $GRID[y%$RESOLUTION][x%$RESOLUTION] = [r.floor, g.floor, b.floor] end
+  def self.plot(x, y, r: $RC, g: $GC, b: $BC) $GRID[y%$RESOLUTION][x%$RESOLUTION] = [r.floor, g.floor, b.floor] end
   # Plot a point on GRID (from bottom left)
-  def self.plot_bot(x, y, r: RC, g: GC, b: BC) plot(x%$RESOLUTION, ($RESOLUTION - y)%$RESOLUTION, r: r, g: g, b: b) end
+  def self.plot_bot(x, y, r: $RC, g: $GC, b: $BC) plot(x%$RESOLUTION, ($RESOLUTION - y)%$RESOLUTION, r: r, g: g, b: b) end
 
   # Define a line by 2 points
-  def self.line(x0, y0, x1, y1, r: RC, g: GC, b: BC)
+  def self.line(x0, y0, x1, y1, r: $RC, g: $GC, b: $BC)
     # x0 is always left of x1
     line(x1, y1, x0, y0, r: r, g: g, b: b) if x1 < x0
 
@@ -91,7 +87,7 @@ module Draw
   end
 
   # Define a line by a point, angle and length
-  def self.line_directed(x0, y0, dir, len, r: RC, g: GC, b: BC, cast_down:true)
+  def self.line_directed(x0, y0, dir, len, r: $RC, g: $GC, b: $BC, cast_down:true)
     x1 = len * Math.cos(dir) + x0
     y1 = len * Math.sin(dir) + y0
     if cast_down

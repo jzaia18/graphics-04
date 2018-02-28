@@ -7,13 +7,20 @@ include Math
 ##TAU!!!!
 $TAU = PI*2
 
+# Changeable
 $RESOLUTION = 500 # All images are squares
 $DEBUGGING = false
 $BACKGROUND_COLOR = [0, 0, 0] # [r, g, b]
-$DRAW_COLOR = [255, 255, 255]
+$DRAW_COLOR = [200, 0, 0]
 $OUTFILE = "image.ppm"
+
+# Static
 $GRID = Draw.create_board()
 $EDGE_MAT = Matrix.new(4, 0) # An edge matrix
+$RC = $DRAW_COLOR[0]
+$GC = $DRAW_COLOR[1]
+$BC = $DRAW_COLOR[2]
+
 
 
 ## Write GRID to OUTFILE
