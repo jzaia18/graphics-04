@@ -10,6 +10,7 @@ $TAU = PI*2
 $RESOLUTION = 500 # All images are squares
 $DEBUGGING = false
 $BACKGROUND_COLOR = [0, 0, 0] # [r, g, b]
+$DRAW_COLOR = [255, 255, 255]
 $OUTFILE = "image.ppm"
 $GRID = Draw.create_board()
 $EDGE_MAT = Matrix.new(4, 0) # An edge matrix
@@ -82,3 +83,6 @@ end
 
 Draw.push_edge_matrix()
 write_out($OUTFILE)
+
+#temp
+puts %x[display image.ppm]
