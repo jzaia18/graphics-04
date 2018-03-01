@@ -1,4 +1,5 @@
 require './Draw.rb'
+require './Utils.rb'
 require './MatrixUtils.rb'
 require './Matrix.rb'
 
@@ -13,32 +14,15 @@ $DEBUGGING = false
 $BACKGROUND_COLOR = [0, 0, 0] # [r, g, b]
 $DRAW_COLOR = [200, 0, 0]
 $OUTFILE = "image.ppm"
+$TEMPFILE = "temmmmp.ppm" #Used as temp storage for displaying
 
 # Static
-$GRID = Draw.create_board()
+$GRID = Utils.create_grid()
+$TRAN_MAT = MatrixUtils.identity(4)
 $EDGE_MAT = Matrix.new(4, 0) # An edge matrix
 $RC = $DRAW_COLOR[0]
 $GC = $DRAW_COLOR[1]
 $BC = $DRAW_COLOR[2]
-
-
-
-## Write GRID to OUTFILE
-def self.write_out(file)
-  file = File.open(file, 'w')
-  file.puts "P3 #$RESOLUTION #$RESOLUTION 255" #Header in 1 line
-  for row in $GRID
-    for pixel in row
-      for rgb in pixel
-        file.print rgb
-        file.print ' '
-      end
-      file.print '   '
-    end
-    file.puts ''
-  end
-  file.close()
-end
 
 ##========================== MAIN ==========================
 
@@ -89,7 +73,6 @@ while i <= $RESOLUTION
 end
 
 Draw.push_edge_matrix()
-write_out($OUTFILE)
+Utils.write_out()
 
-#temp
-puts %x[display image.ppm]
+Utils.parse_file('script')

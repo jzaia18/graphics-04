@@ -2,17 +2,6 @@ require './MatrixUtils.rb'
 
 module Draw
 
-  def self.create_board()## Create board
-    board = Array.new($RESOLUTION)
-    for i in (0...$RESOLUTION)
-      board[i] = Array.new($RESOLUTION)
-      for j in (0...$RESOLUTION)
-        board[i][j] = $BACKGROUND_COLOR
-      end
-    end
-    return board
-  end
-
   # Plot a point on GRID (from top left)
   def self.plot(x, y, r: $RC, g: $GC, b: $BC) $GRID[y%$RESOLUTION][x%$RESOLUTION] = [r.floor, g.floor, b.floor] end
   # Plot a point on GRID (from bottom left)
