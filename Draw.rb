@@ -75,20 +75,6 @@ module Draw
     end
   end
 
-  # Define a line by a point, angle and length
-  def self.line_directed(x0, y0, dir, len, r: $RC, g: $GC, b: $BC, cast_down:true)
-    x1 = len * Math.cos(dir) + x0
-    y1 = len * Math.sin(dir) + y0
-    if cast_down
-      x1 = x1.floor
-      y1 = y1.floor
-    else
-      x1 = x1.ceil
-      y1 = y1.ceil
-    end
-    line(x0, y0, x1, y1, r: r, g: g, b: b)
-  end
-
   # Helper for add_edge
   def self.add_point(x, y, z)
     $EDGE_MAT.add_col([x, y, z, 1])
