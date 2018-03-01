@@ -101,15 +101,15 @@ module Draw
   end
 
   # Draw the pixels in the matrix and clean it out
-  def self.push_edge_matrix()
+  def self.push_edge_matrix(edgemat: $EDGE_MAT)
     i = 0
-    while i < $EDGE_MAT.cols
-      coord0 = $EDGE_MAT.get_col(i)
-      coord1 = $EDGE_MAT.get_col(i + 1)
+    while i < edgemat.cols
+      coord0 = edgemat.get_col(i)
+      coord1 = edgemat.get_col(i + 1)
       line(coord0[0], coord0[1], coord1[0], coord1[1])
       i+=2
     end
-    $EDGE_MAT = Matrix.new(4, 0)
+    edgemat = Matrix.new(4, 0)
   end
 
 end

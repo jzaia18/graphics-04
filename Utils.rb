@@ -15,7 +15,8 @@ module Utils
 
 
   ## Write GRID to OUTFILE
-  def self.write_out(file: $OUTFILE)
+  def self.write_out(file: $OUTFILE, edgemat: $EDGE_MAT)
+    Draw.push_edge_matrix(edgemat: edgemat)
     file = File.open(file, 'w')
     file.puts "P3 #$RESOLUTION #$RESOLUTION 255" #Header in 1 line
     for row in $GRID
@@ -37,12 +38,27 @@ module Utils
     puts %x[rm #{tempfile}]
   end
 
-  def self.parse_file(filename)
+  def self.apply_transformations(edge_mat: $EDGE_MAT, tran_mat: $TRAN_MAT)
+    edge_mat = MatrixUtils.multiply(tran_mat, edge_mat)
+  end
+
+  def self.parse_file(filename: $INFILE)
     file = File.new(filename, "r")
     while (line = file.gets)
+      line = line.chomp
+      puts "LINE: " + line
       case line
-      when 'display'
+      when "display"
         display();
+      when "ident"
+        $TRAN_MAT = MatrixUtils.identity(4)
+      when "line"
+        args = file.gets.chomp.split(" ")
+        for i in (0...6); args[i] = args[i].to_i end
+        Draw.add_edge(args[0], args[1], args[2], args[3], args[4], args[5])
+      when "save"
+        arg = file.gets.chomp
+        write_out(file: arg)
       else
         puts "Unrecognized command: " + line
       end
