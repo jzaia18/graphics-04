@@ -47,4 +47,13 @@ module MatrixUtils
     return ret
   end
 
+  def self.rotation()
+  end
+
+  def self.translation()
+  end
+
+  def self.rotation()
+  end
+
 end
