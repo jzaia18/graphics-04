@@ -28,8 +28,10 @@ $BC = $DRAW_COLOR[2]
 ##=================== MAIN ==========================
 # i = 0
 # while i < $TAU
-#   Draw.add_edge(100, 100, 100*i, 100*cos(i) + 100, 100*sin(i) + 100, 100*i)
+#   Draw.add_edge(250, 250, 250*i, 250*cos(i) + 250, 250*sin(i) + 250, 250*i)
 #   i += 0.01
 # end
+# Utils.display()
+
 
 Utils.parse_file()

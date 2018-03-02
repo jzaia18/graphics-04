@@ -4,7 +4,7 @@ module Draw
 
   # Plot a point on GRID (from top left)
   def self.plot(x, y, r: $RC, g: $GC, b: $BC)
-    return if x < 0 || y < 0 || x > $RESOLUTION || y > $RESOLUTION
+    return if x < 0 || y < 0 || x >= $RESOLUTION || y >= $RESOLUTION
     $GRID[y.to_i][x.to_i] = [r.floor, g.floor, b.floor]
   end
   # Plot a point on GRID (from bottom left)
@@ -15,7 +15,7 @@ module Draw
   # Define a line by 2 points
   def self.line(x0, y0, x1, y1, r: $RC, g: $GC, b: $BC)
     # x0 is always left of x1
-    line(x1, y1, x0, y0, r: r, g: g, b: b) if x1 < x0
+    return line(x1, y1, x0, y0, r: r, g: g, b: b) if x1 < x0
 
     #init vars
     dy = y1-y0
