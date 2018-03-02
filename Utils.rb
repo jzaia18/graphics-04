@@ -36,7 +36,7 @@ module Utils
     write_out(file: tempfile)
     puts %x[display #{tempfile}]
     puts %x[rm #{tempfile}]
-    $GRID = create_grid()
+    $GRID = create_grid() #IAM THE PROBLEM (MAYBE) 
   end
 
   def self.apply_transformations(edge_mat: $EDGE_MAT, tran_mat: $TRAN_MAT)

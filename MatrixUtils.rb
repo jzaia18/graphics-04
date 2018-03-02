@@ -86,6 +86,10 @@ module MatrixUtils
       ret.set(1, 1, cos(theta))
     end
 
+    puts axis
+    puts theta
+    puts ret
+
     return ret
   end
 

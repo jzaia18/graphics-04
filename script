@@ -24,6 +24,21 @@ line
 100 0 0 100 0 100
 display
 ident
+rotate
+z 20
+apply
+display
+ident
+rotate
+x 20
+apply
+display
+ident
+rotate
+y 20
+apply
+display
+ident
 scale
 2 2 2
 apply
@@ -31,15 +46,6 @@ display
 ident
 move
 100 100 0
-apply
-display
-ident
-rotate
-z 20
-rotate
-x 20
-rotate
-y 20
 apply
 display
 ident
