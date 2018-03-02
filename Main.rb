@@ -26,4 +26,10 @@ $GC = $DRAW_COLOR[1]
 $BC = $DRAW_COLOR[2]
 
 ##=================== MAIN ==========================
+# i = 0
+# while i < $TAU
+#   Draw.add_edge(100, 100, 100*i, 100*cos(i) + 100, 100*sin(i) + 100, 100*i)
+#   i += 0.01
+# end
+
 Utils.parse_file()

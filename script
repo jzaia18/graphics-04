@@ -24,6 +24,8 @@ line
 100 0 0 100 0 100
 display
 ident
+move
+100 100 0
 rotate
 z 20
 apply

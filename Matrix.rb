@@ -37,7 +37,7 @@ class Matrix
     for row in @data
       for datum in row
         ret+= "nil" if !datum
-        ret+= datum.to_s + "\t"
+        ret+= datum.to_i.to_s + "\t"
       end
       ret+= "\n"
     end

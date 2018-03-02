@@ -16,6 +16,7 @@ module Utils
 
   ## Write GRID to OUTFILE
   def self.write_out(file: $OUTFILE, edgemat: $EDGE_MAT)
+    $GRID = create_grid()
     Draw.push_edge_matrix(edgemat: edgemat)
     file = File.open(file, 'w')
     file.puts "P3 #$RESOLUTION #$RESOLUTION 255" #Header in 1 line
@@ -36,7 +37,7 @@ module Utils
     write_out(file: tempfile)
     puts %x[display #{tempfile}]
     puts %x[rm #{tempfile}]
-    $GRID = create_grid() #IAM THE PROBLEM (MAYBE) 
+    $GRID = create_grid() #IAM THE PROBLEM (MAYBE)
   end
 
   def self.apply_transformations(edge_mat: $EDGE_MAT, tran_mat: $TRAN_MAT)
@@ -72,6 +73,7 @@ module Utils
       when "apply"
         apply_transformations()
       when "display"
+        puts $EDGE_MAT
         display();
       when "save"
         arg = file.gets.chomp
