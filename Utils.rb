@@ -36,31 +36,48 @@ module Utils
     write_out(file: tempfile)
     puts %x[display #{tempfile}]
     puts %x[rm #{tempfile}]
+    $GRID = create_grid()
   end
 
   def self.apply_transformations(edge_mat: $EDGE_MAT, tran_mat: $TRAN_MAT)
-    edge_mat = MatrixUtils.multiply(tran_mat, edge_mat)
+    MatrixUtils.multiply(tran_mat, edge_mat)
   end
 
   def self.parse_file(filename: $INFILE)
     file = File.new(filename, "r")
     while (line = file.gets)
-      line = line.chomp
-      puts "LINE: " + line
+      line = line.chomp #Kill trailing newline
+      puts "Execute: \"" + line + '"'
       case line
-      when "display"
-        display();
-      when "ident"
-        $TRAN_MAT = MatrixUtils.identity(4)
       when "line"
         args = file.gets.chomp.split(" ")
         for i in (0...6); args[i] = args[i].to_i end
         Draw.add_edge(args[0], args[1], args[2], args[3], args[4], args[5])
+      when "ident"
+        $TRAN_MAT = MatrixUtils.identity(4)
+      when "scale"
+        args = file.gets.chomp.split(" ")
+        for i in (0...3); args[i] = args[i].to_i end
+        scale = MatrixUtils.dilation(args[0], args[1], args[2])
+        MatrixUtils.multiply(scale, $TRAN_MAT)
+      when "move"
+        args = file.gets.chomp.split(" ")
+        for i in (0...3); args[i] = args[i].to_i end
+        move = MatrixUtils.translation(args[0], args[1], args[2])
+        MatrixUtils.multiply(move, $TRAN_MAT)
+      when "rotate"
+        args = file.gets.chomp.split(" ")
+        rotate = MatrixUtils.rotation(args[0], args[1].to_i)
+        MatrixUtils.multiply(rotate, $TRAN_MAT)
+      when "apply"
+        apply_transformations()
+      when "display"
+        display();
       when "save"
         arg = file.gets.chomp
         write_out(file: arg)
       else
-        puts "Unrecognized command: " + line
+        puts "ERROR: Unrecognized command \"" + line + '"'
       end
     end
     file.close

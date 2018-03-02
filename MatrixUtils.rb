@@ -1,3 +1,5 @@
+include Math
+
 module MatrixUtils
 
   # Create an identity matrix of side-length size
@@ -12,16 +14,15 @@ module MatrixUtils
   # Multiplies 2 matricies (dot product) and returns result
   def self.multiply(m1, m2)
     raise "Cannot multiply these matricies due to their dimensions" if m1.cols != m2.rows
-    ret = Matrix.new(m1.rows, m2.cols)
-    for r in (0...ret.rows)
-      for c in (0...ret.cols)
+    for r in (0...m1.rows)
+      for c in (0...m2.cols)
         sum = 0
         for i in (0...m1.rows) # Get the dot product and sum it
           sum += m1.get_row(r)[i] * m2.get_col(c)[i] end
-        ret.set(r, c, sum)
+        m2.set(r, c, sum)
       end
     end
-    return ret
+    return m2
   end
 
   # Adds 2 matricies and returns result
@@ -47,13 +48,46 @@ module MatrixUtils
     return ret
   end
 
-  def self.rotation()
+  def self.dilation(sx, sy, sz)
+    ret = identity(4);
+    ret.set(0, 0, sx)
+    ret.set(1, 1, sy)
+    ret.set(2, 2, sz)
+    return ret
   end
 
-  def self.translation()
+  def self.translation(a, b, c)
+    ret = identity(4);
+    ret.set(0, 3, a)
+    ret.set(1, 3, b)
+    ret.set(2, 3, c)
+    return ret
   end
 
-  def self.rotation()
+  def self.rotation(axis, theta)
+    theta = theta * $TAU / 360
+    ret = identity(4);
+
+    case(axis)
+    when 'x'
+      ret.set(1, 1, cos(theta))
+      ret.set(1, 2, -1 * sin(theta))
+      ret.set(2, 1, sin(theta))
+      ret.set(2, 2, cos(theta))
+    when 'y'
+      ret.set(0, 0, cos(theta))
+      ret.set(0, 2, sin(theta))
+      ret.set(2, 0, -1 * sin(theta))
+      ret.set(2, 2, cos(theta))
+    when 'z'
+      ret.set(0, 0, cos(theta))
+      ret.set(0, 1, -1 * sin(theta))
+      ret.set(1, 0, sin(theta))
+      ret.set(1, 1, cos(theta))
+    end
+
+    return ret
   end
+
 
 end

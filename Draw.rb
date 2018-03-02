@@ -92,10 +92,10 @@ module Draw
     while i < edgemat.cols
       coord0 = edgemat.get_col(i)
       coord1 = edgemat.get_col(i + 1)
-      line(coord0[0], coord0[1], coord1[0], coord1[1])
+      line(coord0[0].to_i, coord0[1].to_i, coord1[0].to_i, coord1[1].to_i)
       i+=2
     end
-    edgemat = Matrix.new(4, 0)
+    #edgemat.reset(4,0)
   end
 
 end

@@ -16,6 +16,18 @@ class Matrix
     end
   end
 
+  def reset(rows, cols)
+    @rows = rows
+    @cols = cols
+    @data = []
+    for i in (0...rows)
+      @data[i] = []
+      for j in (0...cols)
+        @data[i][j] = 0
+      end
+    end
+  end
+
   # For compatablity
   def to_str to_s; end
 
