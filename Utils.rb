@@ -65,7 +65,7 @@ module Utils
         $TRAN_MAT = MatrixUtils.identity(4)
       when "scale"
         args = file.gets.chomp.split(" ")
-        for i in (0...3); args[i] = args[i].to_i end
+        for i in (0...3); args[i] = args[i].to_f end
         scale = MatrixUtils.dilation(args[0], args[1], args[2])
         MatrixUtils.multiply(scale, $TRAN_MAT)
       when "move"

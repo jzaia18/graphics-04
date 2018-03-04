@@ -50,10 +50,16 @@ rotate
 y 22
 rotate
 x 22
+apply
+display
 move
 33 100 0
 apply
 display
 ident
+scale
+.5 1.5 2
+apply
+display
 save
 pic.png
