@@ -11,8 +11,8 @@ $TAU = PI*2
 # Changeable
 $RESOLUTION = 500 # All images are squares
 $DEBUGGING = false
-$BACKGROUND_COLOR = [0, 0, 0] # [r, g, b]
-$DRAW_COLOR = [200, 0, 0]
+$BACKGROUND_COLOR = [80, 80, 80] # [r, g, b]
+$DRAW_COLOR = [255, 255, 0]
 $INFILE = "script"
 $OUTFILE = "image.ppm"
 $TEMPFILE = "temmmmp.ppm" # Used as temp storage for displaying
@@ -26,12 +26,6 @@ $GC = $DRAW_COLOR[1]
 $BC = $DRAW_COLOR[2]
 
 ##=================== MAIN ==========================
-# i = 0
-# while i < $TAU
-#   Draw.add_edge(250, 250, 250*i, 250*cos(i) + 250, 250*sin(i) + 250, 250*i)
-#   i += 0.01
-# end
-# Utils.display()
-
+### Take in script file
 
 Utils.parse_file()

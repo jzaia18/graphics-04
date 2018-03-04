@@ -80,9 +80,6 @@ module Draw
     end
   end
 
-  def self.rect(x0, y0, x1, y1)
-  end
-
   # Helper for add_edge
   def self.add_point(x, y, z)
     $EDGE_MAT.add_col([x, y, z, 1])

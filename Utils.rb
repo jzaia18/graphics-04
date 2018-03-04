@@ -16,21 +16,28 @@ module Utils
 
   ## Write GRID to OUTFILE
   def self.write_out(file: $OUTFILE, edgemat: $EDGE_MAT)
+    extension = file[0...file.index('.')] + file[file.index('.')..-1] #filename with any extension
+    file[file.index('.')..-1] = '.ppm'
     $GRID = create_grid()
     Draw.push_edge_matrix(edgemat: edgemat)
-    file = File.open(file, 'w')
-    file.puts "P3 #$RESOLUTION #$RESOLUTION 255" #Header in 1 line
+    outfile = File.open(file, 'w')
+    outfile.puts "P3 #$RESOLUTION #$RESOLUTION 255" #Header in 1 line
+
+    #Write PPM data
     for row in $GRID
       for pixel in row
         for rgb in pixel
-          file.print rgb
-          file.print ' '
+          outfile.print rgb
+          outfile.print ' '
         end
-        file.print '   '
+        outfile.print '   '
       end
-      file.puts ''
+      outfile.puts ''
     end
-    file.close()
+    outfile.close()
+
+    #Convert filetype
+    puts %x[convert #{file} #{extension}]
   end
 
   def self.display(tempfile: $TEMPFILE)
@@ -73,7 +80,6 @@ module Utils
       when "apply"
         apply_transformations()
       when "display"
-        puts $EDGE_MAT
         display();
       when "save"
         arg = file.gets.chomp

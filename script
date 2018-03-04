@@ -1,59 +1,59 @@
 line
-0 0 0 100 0 0
+0 0 300 300 0 300
 line
-100 0 0 100 100 0
+0 0 300 0 300 300
 line
-100 100 0 0 100 0
+0 0 0 0 300 0
 line
-0 100 0 0 0 0
+0 0 0 0 0 300
 line
-0 0 100 100 0 100
+0 300 0 300 300 0
 line
-100 0 100 100 100 100
+0 300 0 0 300 300
 line
-100 100 100 0 100 100
+0 100 300 300 100 300
 line
-0 100 100 0 0 100
+100 0 300 100 300 300
 line
-0 0 0 0 0 100
+0 0 100 0 300 100
 line
-0 100 0 0 100 100
+0 100 0 0 100 300
 line
-100 100 0 100 100 100
+0 300 100 300 300 100
 line
-100 0 0 100 0 100
-display
-ident
+100 300 0 100 300 300
+line
+0 200 300 300 200 300
+line
+200 0 300 200 300 300
+line
+0 0 200 0 300 200
+line
+0 200 0 0 200 300
+line
+0 300 200 300 300 200
+line
+200 300 0 200 300 300
+line
+0 300 300 300 300 300
+line
+300 0 300 300 300 300
+line
+0 0 300 0 300 300
+line
+0 300 0 0 300 300
+line
+0 300 300 300 300 300
+line
+300 300 0 300 300 300
+rotate
+y 22
+rotate
+x 22
 move
-100 100 0
-rotate
-z 20
+33 100 0
 apply
 display
 ident
-rotate
-x 20
-apply
-display
-ident
-rotate
-y 20
-apply
-display
-ident
-scale
-2 2 2
-apply
-display
-ident
-move
-100 100 0
-apply
-display
-ident
-rotate
-y 20
-apply
-display
 save
 pic.png
